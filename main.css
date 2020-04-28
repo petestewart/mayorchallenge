@@ -1,14 +1,90 @@
 body {
-    background-color: gray;
+    background-color: rgb(114, 114, 114);
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+#big-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#navbar {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+button:focus {
+    outline:0;
+}
+
+#navbar button {
+    background-color: black;
+	border-radius:28px;
+	border:1px solid grey;
+	/* display:inline-block; */
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+    padding:16px 31px;
+    margin: 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px black;
+}
+
+#navbar button:hover {
+	background-color: darkred;
+}
+
+#navbar button:active {
+	position:relative;
+	top:1px;
+}
+
+#pageTitle {
+    background-color: black;
+    color: grey;
+
+    margin: 0px 0px 50px 0px;
+    padding: 20px;
 }
 
 .phase-title {
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
+    color: #f7c221;
+    font-weight: 700;
+    font-size: 26px;
     margin: 10px;
+    text-align: center;
+}
+
+.card {
+    background-color: rgba(217, 151, 35, 0.85);
+    border: 1px solid rgb(83, 83, 83);
+    /* border: 2px solid red; */
+    font-size: 14px;
+    padding: 7px 15px;
+    margin: 10px;
+    width: 400px;
+}
+
+.phase-cat {
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .phase-content {
-    border: 2px solid red;
-    margin: 10px;
+    display: flex;
+    font-weight: 600;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1200px;
+    /* border: 2px solid green; */
 }
 
+.phase-title {
+    margin: 0px 0px 50px 0px;
+}
