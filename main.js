@@ -51,7 +51,7 @@ const phases = [
             distance: undefined
         },
 
-        largeVenues: {
+        sportsVenues: {
             open: false,
             masksReq: undefined
         }
@@ -107,7 +107,7 @@ const phases = [
             distance: undefined
         },
 
-        largeVenues: {
+        sportsVenues: {
             open: false,
             masksReq: undefined
         }
@@ -163,7 +163,7 @@ const phases = [
             distance: true
         },
 
-        largeVenues: {
+        sportsVenues: {
             open: false,
             masksReq: undefined
         }
@@ -219,7 +219,7 @@ const phases = [
             distance: true
         },
 
-        largeVenues: {
+        sportsVenues: {
             open: false,
             masksReq: undefined
         }
@@ -275,17 +275,152 @@ const phases = [
             distance: false
         },
 
-        largeVenues: {
+        sportsVenues: {
             open: true,
             masksReq: false
         }
     }
 ]
 
-// const arrayContent = (array) => {
-//     for (let i in array) {
-//         console.log(array[i]);
-//     }
+const buildCard = (step) => {
+    let domString = '';
+    domString += `
+        <div class="phase-title">${phases[step].phase}</div>
+            <div class="phase-content">
+            <div class="phase-cat">Residents</div>
+            <div class="rules"><ul>
+                <li>High-risk residents must stay home</li>`;
+                
+        if (phases[step].residents.wfh) {
+            domString += '<li>Work only permitted from home unless essential</li>'
+        } else {domString += '<li>Work from home is optional</li>'};
+
+        if (phases[step].residents.gatherings_max) {
+            domString += `<li>No gatherings permitted over ${phases[step].residents.gatherings_max} people</li>`};
+
+        domString += '</ul></div>';//close list & phase-cat
+        
+        domString += `
+            <div class="phase-cat">Schools</div>
+            <div class="rules">`;
+            domString += (phases[step].schools.open) ? '<ul><li>Open</li>' : '<ul><li>Closed</li>';
+        domString += '</ul></div>'; //close list & phase-cat
+
+        domString += `
+            <div class="phase-cat">Restaurants</div>
+            <div class="rules">
+            <ul>`;
+            if (phases[step].restaurants.open) {
+                domString += `<li>${phases[step].restaurants.capacity * 100}% capacity</li>`;
+                domString += (phases[step].restaurants.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>';            
+            } else {
+                domString += '<li>Curbside/takeout only</li>';
+            }
+        domString += '</ul></div>'; //close list & phase-cat
+
+        domString += `
+            <div class="phase-cat">Bars & Music Venues</div>
+            <div class="rules">
+            <ul>`;
+            if (phases[step].bars.open) {
+                domString += `<li>${phases[step].bars.capacity * 100}% capacity</li>`;
+                domString += (phases[step].bars.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>';            
+            } else {
+                domString += '<li>Closed</li>';
+            }
+        domString += '</ul></div>'; //close list & phase-cat
+
+        domString += `
+        <div class="phase-cat">Retail Stores & Commercial Busniesses</div>
+        <div class="rules">
+        <ul>`;
+        if (phases[step].stores.open) {
+            domString += `<li>${phases[step].stores.capacity * 100}% capacity</li>`;
+            domString += (phases[step].stores.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>';            
+        } else {
+            domString += '<li>Closed</li>';
+        }
+        domString += '</ul></div>'; //close list & phase-cat
+
+        domString += `
+        <div class="phase-cat">Salons, Massage, etc.</div>
+        <div class="rules">
+        <ul>`;
+        if (phases[step].salons.open) {
+            domString += `<li>Open by appointment only (no walk-ins)</li>
+                          <li>Limit staff and customers to ${phases[step].salons.capacity * 100}</li>`;
+            domString += (phases[step].salons.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>';            
+        } else {
+            domString += '<li>Closed</li>';
+        }
+        domString += '</ul></div>'; //close list & phase-cat
+
+        domString += `
+        <div class="phase-cat">Healthcare & Dental</div>
+        <div class="rules">
+        <ul>`;
+            domString += (phases[step].healthcare.highRiskProcedures) ? '<li>Routine and elective procedures for all age groups</li>' : '<li>Routine and elective procedures only allowed for those under age 70</li>';          
+            domString += '<li>Employees required to wear masks</li>';
+        domString += '</ul></div>'; //close list & phase-cat
+
+        domString += `
+        <div class="phase-cat">Gyms & Fitness</div>
+        <div class="rules">
+        <ul>`;
+        if (phases[step].gyms.open) {
+            domString += '<li>Open</li>';
+            domString += (phases[step].gyms.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>';            
+        } else {
+            domString += '<li>Closed</li>';
+        }
+        domString += '</ul></div>'; //close list & phase-cat
+
+        domString += `
+        <div class="phase-cat">Playgrounds, Tennis & Basketball Courts</div>
+        <div class="rules">
+        <ul>`;
+        if (phases[step].playgrounds.open) {
+            domString += (phases[step].playgrounds.distance) ? '<li>Open with social distancing required</li>' : '<li>Open</li>';            
+        } else {
+            domString += '<li>Closed</li>';
+        }
+        domString += '</ul></div>'; //close list & phase-cat
+        
+        domString += `
+        <div class="phase-cat">Sports Venues</div>
+        <div class="rules">
+        <ul>`;
+        if (phases[step].sportsVenues.open) {
+            domString += '<li>Open</li>';
+            domString += (phases[step].sportsVenues.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>';                       
+        } else {
+            domString += '<li>Closed</li>';
+        }
+        domString += '</ul></div>'; //close list & phase-cat
+        
+
+        domString += '</div>'; // phase-content
+    return domString;
+}
+
+const printToDom = (location, content) => {
+    const selectedDiv = document.querySelector(location);
+    selectedDiv.innerHTML = content;
+}
+
+// const allCards = () => {
+//     let allPhases = '';
+//     allPhases += buildCard(0);
+//     allPhases += buildCard(1);
+//     allPhases += buildCard(2);
+//     allPhases += buildCard(3);
+//     allPhases += buildCard(4);
+//     return allPhases;
 // }
 
-// arrayContent (phases[1]);
+const init = () => {
+    printToDom('#gridArea', buildCard(4))
+    // console.log(buildCards(0));
+}
+
+init();
