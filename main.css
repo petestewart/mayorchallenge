@@ -8,6 +8,7 @@ body {
 #big-container {
     display: flex;
     flex-direction: row;
+    min-width: 626px;
 }
 
 #navbar {
@@ -15,6 +16,8 @@ body {
     flex-direction: column;
     width: 200px;
 }
+
+
 
 button:focus {
     outline:0;
@@ -46,8 +49,7 @@ button:focus {
 
 #pageTitle {
     background-color: black;
-    color: grey;
-
+    color: #f7c221;
     margin: 0px 0px 50px 0px;
     padding: 20px;
 }
@@ -69,6 +71,7 @@ button:focus {
     padding: 7px 15px;
     margin: 10px;
     width: 400px;
+    height: 130px;
 }
 
 .phase-cat {
@@ -87,4 +90,8 @@ button:focus {
 
 .phase-title {
     margin: 0px 0px 50px 0px;
+}
+
+.rules li {
+    list-style-type: square;
 }
