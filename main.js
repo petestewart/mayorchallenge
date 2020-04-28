@@ -413,20 +413,27 @@ const printToDom = (location, content) => {
     selectedDiv.innerHTML = content;
 }
 
-// const allCards = () => {
-//     let allPhases = '';
-//     allPhases += buildCard(0);
-//     allPhases += buildCard(1);
-//     allPhases += buildCard(2);
-//     allPhases += buildCard(3);
-//     allPhases += buildCard(4);
-//     return allPhases;
-// }
+const showPhase = (event) => {
+    const buttonId = event.target.id;
+    const phaseNumber = buttonId.slice(-1);
+    printToDom('#titleArea', buildTitle(phaseNumber));
+    printToDom('#gridArea', buildCard(phaseNumber));
+
+}
+
+const clickEvents = () => {
+    document.querySelector('#button0').addEventListener('click', showPhase);
+    document.querySelector('#button1').addEventListener('click', showPhase);
+    document.querySelector('#button2').addEventListener('click', showPhase);
+    document.querySelector('#button3').addEventListener('click', showPhase);
+    document.querySelector('#button4').addEventListener('click', showPhase);  
+}
+
 
 const init = () => {
-    printToDom('#titleArea', buildTitle(4));
-    printToDom('#gridArea', buildCard(4))
-    // console.log(buildCards(0));
+    printToDom('#titleArea', buildTitle(0));
+    printToDom('#gridArea', buildCard(0))
+    clickEvents();
 }
 
 init();
