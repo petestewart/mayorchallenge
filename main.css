@@ -1,0 +1,14 @@
+body {
+    background-color: gray;
+}
+
+.phase-title {
+    border: 2px solid blue;
+    margin: 10px;
+}
+
+.phase-content {
+    border: 2px solid red;
+    margin: 10px;
+}
+
