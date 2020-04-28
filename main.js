@@ -282,12 +282,17 @@ const phases = [
     }
 ]
 
+const buildTitle = (step) => {
+    const domString = `<div class="phase-title">${phases[step].phase}</div>`;
+    return domString;
+}
+
 const buildCard = (step) => {
     let domString = '';
     domString += `
-        <div class="phase-title">${phases[step].phase}</div>
-            <div class="phase-content">
-            <div class="phase-cat">Residents</div>
+        <div class="phase-content">
+
+            <div class="card"><div class="phase-cat">Residents</div>
             <div class="rules"><ul>
                 <li>High-risk residents must stay home</li>`;
                 
@@ -298,16 +303,16 @@ const buildCard = (step) => {
         if (phases[step].residents.gatherings_max) {
             domString += `<li>No gatherings permitted over ${phases[step].residents.gatherings_max} people</li>`};
 
-        domString += '</ul></div>';//close list & phase-cat
+        domString += '</ul></div></div>'; //close card
         
         domString += `
-            <div class="phase-cat">Schools</div>
+            <div class="card"><div class="phase-cat">Schools</div>
             <div class="rules">`;
             domString += (phases[step].schools.open) ? '<ul><li>Open</li>' : '<ul><li>Closed</li>';
-        domString += '</ul></div>'; //close list & phase-cat
+        domString += '</ul></div></div>'; //close card
 
         domString += `
-            <div class="phase-cat">Restaurants</div>
+            <div class="card"><div class="phase-cat">Restaurants</div>
             <div class="rules">
             <ul>`;
             if (phases[step].restaurants.open) {
@@ -316,10 +321,10 @@ const buildCard = (step) => {
             } else {
                 domString += '<li>Curbside/takeout only</li>';
             }
-        domString += '</ul></div>'; //close list & phase-cat
+        domString += '</ul></div></div>'; //close card
 
         domString += `
-            <div class="phase-cat">Bars & Music Venues</div>
+            <div class="card"><div class="phase-cat">Bars & Music Venues</div>
             <div class="rules">
             <ul>`;
             if (phases[step].bars.open) {
@@ -328,10 +333,10 @@ const buildCard = (step) => {
             } else {
                 domString += '<li>Closed</li>';
             }
-        domString += '</ul></div>'; //close list & phase-cat
+        domString += '</ul></div></div>'; //close card
 
         domString += `
-        <div class="phase-cat">Retail Stores & Commercial Busniesses</div>
+        <div class="card"><div class="phase-cat">Retail Stores & Commercial Busniesses</div>
         <div class="rules">
         <ul>`;
         if (phases[step].stores.open) {
@@ -340,10 +345,10 @@ const buildCard = (step) => {
         } else {
             domString += '<li>Closed</li>';
         }
-        domString += '</ul></div>'; //close list & phase-cat
+        domString += '</ul></div></div>'; //close card
 
         domString += `
-        <div class="phase-cat">Salons, Massage, etc.</div>
+        <div class="card"><div class="phase-cat">Salons, Massage, etc.</div>
         <div class="rules">
         <ul>`;
         if (phases[step].salons.open) {
@@ -353,18 +358,18 @@ const buildCard = (step) => {
         } else {
             domString += '<li>Closed</li>';
         }
-        domString += '</ul></div>'; //close list & phase-cat
+        domString += '</ul></div></div>'; //close card
 
         domString += `
-        <div class="phase-cat">Healthcare & Dental</div>
+        <div class="card"><div class="phase-cat">Healthcare & Dental</div>
         <div class="rules">
         <ul>`;
             domString += (phases[step].healthcare.highRiskProcedures) ? '<li>Routine and elective procedures for all age groups</li>' : '<li>Routine and elective procedures only allowed for those under age 70</li>';          
             domString += '<li>Employees required to wear masks</li>';
-        domString += '</ul></div>'; //close list & phase-cat
+        domString += '</ul></div></div>'; //close card
 
         domString += `
-        <div class="phase-cat">Gyms & Fitness</div>
+        <div class="card"><div class="phase-cat">Gyms & Fitness</div>
         <div class="rules">
         <ul>`;
         if (phases[step].gyms.open) {
@@ -373,10 +378,10 @@ const buildCard = (step) => {
         } else {
             domString += '<li>Closed</li>';
         }
-        domString += '</ul></div>'; //close list & phase-cat
+        domString += '</ul></div></div>'; //close card
 
         domString += `
-        <div class="phase-cat">Playgrounds, Tennis & Basketball Courts</div>
+        <div class="card"><div class="phase-cat">Playgrounds, Tennis & Basketball Courts</div>
         <div class="rules">
         <ul>`;
         if (phases[step].playgrounds.open) {
@@ -384,10 +389,10 @@ const buildCard = (step) => {
         } else {
             domString += '<li>Closed</li>';
         }
-        domString += '</ul></div>'; //close list & phase-cat
+        domString += '</ul></div></div>'; //close card
         
         domString += `
-        <div class="phase-cat">Sports Venues</div>
+        <div class="card"><div class="phase-cat">Sports Venues</div>
         <div class="rules">
         <ul>`;
         if (phases[step].sportsVenues.open) {
@@ -396,10 +401,10 @@ const buildCard = (step) => {
         } else {
             domString += '<li>Closed</li>';
         }
-        domString += '</ul></div>'; //close list & phase-cat
+        domString += '</ul></div></div>'; //close card
         
 
-        domString += '</div>'; // phase-content
+        domString += '</div>'; // close phase-content
     return domString;
 }
 
@@ -419,6 +424,7 @@ const printToDom = (location, content) => {
 // }
 
 const init = () => {
+    printToDom('#titleArea', buildTitle(4));
     printToDom('#gridArea', buildCard(4))
     // console.log(buildCards(0));
 }
