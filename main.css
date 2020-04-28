@@ -71,7 +71,7 @@ button:focus {
     padding: 7px 15px;
     margin: 10px;
     width: 400px;
-    height: 130px;
+    min-height: 150px;
 }
 
 .phase-cat {

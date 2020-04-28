@@ -227,7 +227,7 @@ const phases = [
     {
         phase: 'Phase Four',
         residents: {
-            wfh: true,
+            wfh: false,
             gatherings_max: undefined,
             masksReq: false
         },
@@ -297,8 +297,10 @@ const buildCard = (step) => {
                 <li>High-risk residents must stay home</li>`;
                 
         if (phases[step].residents.wfh) {
-            domString += '<li>Work only permitted from home unless essential</li>'
+            domString += '<li>Work only from home unless essential</li>'
         } else {domString += '<li>Work from home is optional</li>'};
+
+        domString += (phases[step].residents.masksReq) ? '<li>Wearing masks in public is required</li>' : '<li>Wearing masks in public is optional but recommended</li>';       
 
         if (phases[step].residents.gatherings_max) {
             domString += `<li>No gatherings permitted over ${phases[step].residents.gatherings_max} people</li>`};
@@ -316,8 +318,8 @@ const buildCard = (step) => {
             <div class="rules">
             <ul>`;
             if (phases[step].restaurants.open) {
-                domString += `<li>${phases[step].restaurants.capacity * 100}% capacity</li>`;
-                domString += (phases[step].restaurants.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>';            
+                domString += `<li>Open at ${phases[step].restaurants.capacity * 100}% capacity</li>`;
+                domString += '<li>Employees screened daily</li>' + ((phases[step].restaurants.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>');            
             } else {
                 domString += '<li>Curbside/takeout only</li>';
             }
@@ -328,8 +330,8 @@ const buildCard = (step) => {
             <div class="rules">
             <ul>`;
             if (phases[step].bars.open) {
-                domString += `<li>${phases[step].bars.capacity * 100}% capacity</li>`;
-                domString += (phases[step].bars.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>';            
+                domString += `<li>Open at ${phases[step].bars.capacity * 100}% capacity</li>`;
+                domString += '<li>Employees screened daily</li>' + ((phases[step].bars.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>');            
             } else {
                 domString += '<li>Closed</li>';
             }
@@ -340,8 +342,8 @@ const buildCard = (step) => {
         <div class="rules">
         <ul>`;
         if (phases[step].stores.open) {
-            domString += `<li>${phases[step].stores.capacity * 100}% capacity</li>`;
-            domString += (phases[step].stores.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>';            
+            domString += `<li>Open at ${phases[step].stores.capacity * 100}% capacity</li>`;
+            domString += '<li>Employees screened daily</li>' + ((phases[step].stores.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>');            
         } else {
             domString += '<li>Closed</li>';
         }
@@ -353,8 +355,8 @@ const buildCard = (step) => {
         <ul>`;
         if (phases[step].salons.open) {
             domString += `<li>Open by appointment only (no walk-ins)</li>
-                          <li>Limit staff and customers to ${phases[step].salons.capacity * 100}</li>`;
-            domString += (phases[step].salons.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>';            
+                          <li>Limit staff and customers to ${phases[step].salons.capacity}</li>`;
+            domString += '<li>Employees screened daily</li>' + ((phases[step].salons.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>');            
         } else {
             domString += '<li>Closed</li>';
         }
@@ -364,7 +366,7 @@ const buildCard = (step) => {
         <div class="card"><div class="phase-cat">Healthcare & Dental</div>
         <div class="rules">
         <ul>`;
-            domString += (phases[step].healthcare.highRiskProcedures) ? '<li>Routine and elective procedures for all age groups</li>' : '<li>Routine and elective procedures only allowed for those under age 70</li>';          
+            domString += (phases[step].healthcare.highRiskProcedures) ? '<li>Routine and elective procedures allowed</li>' : '<li>Routine and elective procedures only allowed for those under age 70</li>';          
             domString += '<li>Employees required to wear masks</li>';
         domString += '</ul></div></div>'; //close card
 
@@ -374,7 +376,7 @@ const buildCard = (step) => {
         <ul>`;
         if (phases[step].gyms.open) {
             domString += '<li>Open</li>';
-            domString += (phases[step].gyms.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>';            
+            domString += '<li>Employees screened daily</li>' + ((phases[step].gyms.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>');            
         } else {
             domString += '<li>Closed</li>';
         }
@@ -397,7 +399,7 @@ const buildCard = (step) => {
         <ul>`;
         if (phases[step].sportsVenues.open) {
             domString += '<li>Open</li>';
-            domString += (phases[step].sportsVenues.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>';                       
+            domString += '<li>Employees screened daily</li>' + ((phases[step].sportsVenues.masksReq) ? '<li>Employees required to wear masks</li>' : '<li>Employees wearing masks is optional but recommended</li>');                       
         } else {
             domString += '<li>Closed</li>';
         }
