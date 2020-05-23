@@ -26,3 +26,4 @@ It was built as a bonus assignment during my enrollment at [Nashville Software S
 - [ ] Make cards change colors based on the level of restriction.
 - [ ] Add more filter buttons so that a user could view less categories of business if so desired.
 - [ ] Add icons to descriptions to make the data more quickly readable.
+- [ ] Make color of the appropriate button change to reflect currently displayed filter.
