@@ -1,4 +1,4 @@
-# Mayor Challenge
+# COVID-19 Mayor Challenge
 In April of 2020 while most of Nashville was on lockdown due to the COVID-19 pandemic, the mayor's office released its official multi-phase plan for reopening businesses. Unfortunately, the posted PDF lacked a lot of clarity and organization, so it was difficult to tell what the details of each phase in the plan actually were.
 
 This web app was an attempt to simplify the presentation of the city's official plan by using a card type presentation with buttons for each phase of the plan. When the user clicks a button, the details of the restrictions in each category change accordingly.
